@@ -1,0 +1,9 @@
+#关于组件import问题
+import组件之后，必须在后面的 components里面声明一下，再能引用模板
+
+eg：
+  import exampale from './vue/example'
+  components: {
+    exampale: exampale //或者直接写exampale
+  }
+  上面引用<exampale></exampale>
