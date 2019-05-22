@@ -32,3 +32,4 @@ vue init webpack xxx
 cd my-project
 cnpm install
 cnpm run dev
+
