@@ -1,0 +1,2 @@
+$(function(){ }) 这是jquery里的,是当文档载入完毕就执行的意思.
+类似于早期的document.ready(function() {})
