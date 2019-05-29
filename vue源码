@@ -1,0 +1,110 @@
+用vue这么久我是很好奇从vue是怎么一步步把单文件组件的内容给渲染到空的div下面的，那从main.js入口开始,为了方便理解，
+我们只保留一个App.vue, main.js文件，路由，vuex,插件等等都不引入，在App.vue里面我们只定义一个data字段，插值绑定一个。
+
+先看下main.js，比较简单
+
+import Vue from "vue";
+import App from "./App";
+Vue.config.productionTip = false;
+
+new Vue({
+  el: "#app",
+  render: h => h(App)
+});
+
+/*
+initMixin给Vue.prototype添加：
+_init函数,
+...
+*/
+initMixin(Vue);
+/*
+stateMixin给Vue.prototype添加：
+$data属性,
+$props属性,
+$set函数,
+$delete函数,
+$watch函数,
+...
+*/
+stateMixin(Vue);
+/*
+eventsMixin给Vue.prototype添加：
+$on函数,
+$once函数,
+$off函数,
+$emit函数,
+$watch方法,
+...
+*/
+eventsMixin(Vue);
+/*
+lifecycleMixin给Vue.prototype添加:
+_update方法:私有方法,用于更新dom,其中调用_patch产生跟新后的dom,
+$forceUpdate函数,
+$destroy函数,
+...
+*/
+lifecycleMixin(Vue);
+/*
+renderMixin给Vue.prototype添加:
+$nextTick函数,
+_render函数,
+...
+*/
+renderMixin(Vue);
+
+至此，部分常见的我们经常看到的初始化工作已经做完，现在我们知道我们在vm上用的$开头的方法都是在一加载vue.js完成后就挂在了Vue.prototype,我们的vm实例就可以用这些方法了。
+下面当我们正式开始new Vue()
+
+callHook(vm, 'created'):此时生命周期created触发，我们能访问data,prop,provide等等
+下面最后一步至关重要：
+ if (vm.$options.el) {
+      vm.$mount(vm.$options.el);
+    }
+这里是判断我们是否传入了el，属性，传入了则调用$mount方法挂载内容到el所在节点下
+*/
+ this._init(options)
+//在执行完 this._init() 后进入了最最重要的一步，挂载组件
+//程序接着往下走回执行:mountComponent
+/*
+  函数 mountComponent 主要做了下面这些事情:
+  触发 beforeMount() 钩子函数,
+  声明 updateComponent 函数，里面调用了 vm_update(vm._render(),...)，这两个方法作用下面执行到的时候说一下.
+  new Watcher(),此时会传入updateComponent函数,并随后执行此函数，执行后会发生一些函数执行，我只列举比较重要的大流程函数：
+  Vue._render：执行由vue-loader生成的render函数或者自己写的render函数，最终返回一个由createComponent(非createPatchFunction内部的)产生的vnode.
+  createComponent(非createPatchFunction内部):创建组件虚拟节点，此函数返回一个vnode，表示vue组件的vnode.
+  vm._update:接收上面的vnode参数，这里面会触发VM.__patch__函数，这个函数里面最终返回的结果就是我们在html页面写的空的div,但是里面有了真实的内容，此时页面可以看到内容了，
+  触发 mount() 钩子函数，这个mount钩子每个组件实例会在自己的insert hook中调用
+
+*/
+mountComponent()
+
+到了这里，函数moutComponent执行完毕并且返回了vm,
+等 this._init()执行完我们在页面就可以看到内容了
+
+总结
+我们可以大致总结一下从new Vue开始都大致执行了哪些重要的方法
+
+1.new Vue();
+2.Vue.prototype._init();
+3.Vue.prototype.$mount();
+4.mountComponent();
+5.new Watcher();
+6.Watcher.prototype.get();
+7.updateComponent();
+8.Vue.prototype._render();
+9.render();
+10.createElement()
+11.Vue.prototype._update();//这里面会执行vm.$el=vm.__patch__(),最终根vm的$el就有了真实dom值
+12.Vue.prototype.__patch__();//这个应该是最重要的方法了，他返回了真实的dom节点。
+
+在 vm.__patch__中会产生一个属于App.vue这个虚拟节点的实例,然后再次调用该实例的_init()方法，然后依次执行步骤2到12,继而完成app组件的挂载,最终new Vue出来的vm的$el,就是所有的真实dom。
+
+在开始研究时在浏览器一步步调试看执行的过程，在谷歌的调试工具中借助这个call Stack
+
+很方便查看运行过程都调用了哪些函数，在程序运行vm.__patch__后里面涉及到了这俩函数 createElm，createChilren互相调用的逻辑，然后由
+于在这之前又调用了几十个函数，导致调试到最后按F10电脑要卡顿好久才能进入下一步，我们看到页面可能是一瞬间的事情，但是vue帮我们做了很多事情，
+很感谢vue这么优秀的框架。
+
+转自https://segmentfault.com/a/1190000015371266
