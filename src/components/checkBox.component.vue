@@ -70,6 +70,9 @@
                 }
             }
         }
+        .select-all-btn {
+            width: 70px;
+        }
     }
 
 </style>
@@ -85,7 +88,7 @@
                 <input type="checkbox" :id="'label' + + labelType + index" :value="item.value" v-model="checkedValues" @click="change(index)" title=""/>
             </span>
             <!--全选按钮-->
-            <span class="checkBox-wapper" :class="{'checked':selectAllTab}" v-if="selectAllBtn">
+            <span class="checkBox-wapper select-all-btn" :class="{'checked':selectAllTab}" v-if="selectAllBtn">
                 <span class="checkbox-icon">
                     <span></span>
                 </span>
@@ -179,7 +182,9 @@
         },
         watch: {
             value(newVal,oldVal) {
-                this.setInitActive();
+                if(!oldVal) {
+                    this.setInitActive();
+                }
             }
         },
         computed: {
@@ -264,6 +269,7 @@
                     },10);
                 }
             },
+            //设置默认选中或回显
             setInitActive() {
                 let that = this;
                 setTimeout(function() {
@@ -299,8 +305,9 @@
                         }
                         let dateStatusList = value.split(',');
                         for(let m = 0; m < checkBoxData.length; m++) {
+                            checkBoxData[m].status = false;
                             for(let k = 0; k < dateStatusList.length; k++) {
-                                dateStatusList[k] == checkBoxData[m].value?checkBoxData[m].status = true:checkBoxData[m].status = false;
+                                dateStatusList[k] == checkBoxData[m].value?checkBoxData[m].status = true:'';
                             }
                         }
                     }

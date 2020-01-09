@@ -270,7 +270,9 @@
         },
         watch: {
             value(newVal,oldVal) {
-                this.setInitActive();
+                if(!oldVal) {
+                    this.setInitActive();
+                }
             }
         },
         computed:{
@@ -304,9 +306,7 @@
                 }
 
                 // 代替mounted钩子 只加载一次确保能拿到props的数据
-                setTimeout(function() {
-                    that.setInitActive();
-                },100);
+                that.setInitActive();
                 return result
             },
             // 计算data 用于响应循环
@@ -380,66 +380,68 @@
                 }
                 this.flashpoint = !this.flashpoint;
             },
+            //设置默认选中或回显
             setInitActive() {
                 let that = this;
-                let selectIndex = that.selectIndex;
-                if(!that.multiple && that.computedOptions.length > 0) {
-                    // 单选设置默认选中 传入index值
-                    if(selectIndex.length > 0) {
-                        that.valueData = that.computedOptions[selectIndex[0]].value || '';
-                        that.valueText = that.computedOptions[selectIndex[0]].text || '';
-                        that.activeIndex = parseFloat(selectIndex[0]);
-                    }
-                    // 单选设置默认选中 传入value值
-                    if(that.value !== '') {
-                        let fatherValue = '';
-                        for(let i = 0; i < that.computedOptions.length; i++) {
-                            (that.value == that.computedOptions[i].value)?fatherValue = i:'';
+                setTimeout(function() {
+                    let selectIndex = that.selectIndex;
+                    if(!that.multiple && that.computedOptions.length > 0) {
+                        // 单选设置默认选中 传入index值
+                        if(selectIndex.length > 0) {
+                            that.valueData = that.computedOptions[selectIndex[0]].value || '';
+                            that.valueText = that.computedOptions[selectIndex[0]].text || '';
+                            that.activeIndex = parseFloat(selectIndex[0]);
                         }
-                        if(fatherValue !== '') {
-                            that.valueData = that.value;
-                            that.valueText = that.computedOptions[fatherValue].text;
-                            that.activeIndex = fatherValue;
-                        }
-                    }
-                }else if(that.computedOptions.length > 0) {
-                    // 多选选设置默认选中 传入index值
-                    if(selectIndex.length > 0) {
-                        let arrayMap = [],
-                            arrayTextMap = [];
-                        for(let i = 0; i < selectIndex.length; i++) {
-                            that.formatData[selectIndex[i]].status = true;
-                            arrayMap.push(that.formatData[selectIndex[i]].value);
-                            arrayTextMap.push(that.formatData[selectIndex[i]].text)
-                        }
-                        if(arrayMap.length > 0) {
-                            that.valueData = arrayMap.join(',');
-                            that.valueText = arrayTextMap.join(',');
-                        }
-                    }
-                    // 多选选设置默认选中 传入value值
-                    if(this.value !== '') {
-                        let arrayMap = [],
-                            arrayTextMap = [];
-                        arrayMap = this.value.toString().split(',');
-                        for(let i = 0; i < arrayMap.length; i++) {
-                            for(let k = 0; k < this.formatData.length; k++) {
-                                if(arrayMap[i] == that.formatData[k].value) {
-                                    arrayTextMap.push(that.formatData[k].text);
-                                    that.formatData[k].status = true;
-                                }else {
-                                    that.formatData[k].status = false;
-                                }
+                        // 单选设置默认选中 传入value值
+                        if(that.value !== '') {
+                            let fatherValue = '';
+                            for(let i = 0; i < that.computedOptions.length; i++) {
+                                (that.value == that.computedOptions[i].value)?fatherValue = i:'';
+                            }
+                            if(fatherValue !== '') {
+                                that.valueData = that.value;
+                                that.valueText = that.computedOptions[fatherValue].text;
+                                that.activeIndex = fatherValue;
                             }
                         }
-                        if(arrayMap.length > 0) {
-                            that.valueData = that.value;
-                            that.valueText = arrayTextMap.join(',');
+                    }else if(that.computedOptions.length > 0) {
+                        // 多选选设置默认选中 传入index值
+                        if(selectIndex.length > 0) {
+                            let arrayMap = [],
+                                arrayTextMap = [];
+                            for(let i = 0; i < selectIndex.length; i++) {
+                                that.formatData[selectIndex[i]].status = true;
+                                arrayMap.push(that.formatData[selectIndex[i]].value);
+                                arrayTextMap.push(that.formatData[selectIndex[i]].text)
+                            }
+                            if(arrayMap.length > 0) {
+                                that.valueData = arrayMap.join(',');
+                                that.valueText = arrayTextMap.join(',');
+                            }
                         }
+                        // 多选选设置默认选中 传入value值
+                        if(that.value !== '') {
+                            let arrayMap,
+                                arrayTextMap = [];
+                            arrayMap = that.value.toString().split(',');
+                            for(let i = 0; i < that.formatData.length; i++) {
+                                that.formatData[i].status = false;
+                                for(let k = 0; k < arrayMap.length; k++) {
+                                    if(arrayMap[k] == that.formatData[i].value) {
+                                        arrayTextMap.push(that.formatData[i].text);
+                                        that.formatData[i].status = true;
+                                    }
+                                }
+                            }
+                            if(arrayMap.length > 0) {
+                                that.valueData = that.value;
+                                that.valueText = arrayTextMap.join(',');
+                            }
+                        }
+                        that.flashpoint  = !that.flashpoint;
                     }
-                    that.flashpoint  = !that.flashpoint;
-                }
-                that.$emit('valueChange',that.valueData);
+                    that.$emit('valueChange',that.valueData);
+                },100);
             }
 
         },
