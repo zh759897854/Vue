@@ -177,6 +177,11 @@
                 }
             }
         },
+        watch: {
+            value(newVal,oldVal) {
+                this.setInitActive();
+            }
+        },
         computed: {
             dataMap() {
                 let that = this;
@@ -295,7 +300,7 @@
                         let dateStatusList = value.split(',');
                         for(let m = 0; m < checkBoxData.length; m++) {
                             for(let k = 0; k < dateStatusList.length; k++) {
-                                dateStatusList[k] == checkBoxData[m].value?checkBoxData[m].status = true:'';
+                                dateStatusList[k] == checkBoxData[m].value?checkBoxData[m].status = true:checkBoxData[m].status = false;
                             }
                         }
                     }
@@ -317,7 +322,7 @@
                             that.selectAllTab = false;
                         }
                     }
-                },500);
+                },100);
             }
         },
     }

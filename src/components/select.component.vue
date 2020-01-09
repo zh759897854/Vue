@@ -268,6 +268,11 @@
                 }
             }
         },
+        watch: {
+            value(newVal,oldVal) {
+                this.setInitActive();
+            }
+        },
         computed:{
             // 格式化数据传过来的可能是 数组||对象
             formatData() {
@@ -301,7 +306,7 @@
                 // 代替mounted钩子 只加载一次确保能拿到props的数据
                 setTimeout(function() {
                     that.setInitActive();
-                },500);
+                },100);
                 return result
             },
             // 计算data 用于响应循环
@@ -422,6 +427,8 @@
                                 if(arrayMap[i] == that.formatData[k].value) {
                                     arrayTextMap.push(that.formatData[k].text);
                                     that.formatData[k].status = true;
+                                }else {
+                                    that.formatData[k].status = false;
                                 }
                             }
                         }
