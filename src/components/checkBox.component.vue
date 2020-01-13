@@ -70,6 +70,7 @@
                 }
             }
         }
+
         .select-all-btn {
             width: 70px;
         }

@@ -39,12 +39,15 @@
         <br/><br/><br/><br/>
 
         <div>
-            <sy-table :scrollX="scrollX"
+            <sy-table :scrollX="true"
                       :titleData="titleData"
                       :bodyData="bodyData"
+                      :trClass="trClass"
+                      @tdClick="tdClick"
                       @getSortData="getSortData">
             </sy-table>
         </div>
+        <br/><br/><br/><br/>
     </div>
 </template>
 
@@ -60,16 +63,41 @@
     export default {
         name: 'home',
         components: {
-            DatePicker,
-            DatePicker1,
-            check,
-            selec,
-            commonBtn,
             inputComponent,
-            SyTable
+            DatePicker1,
+            DatePicker,
+            commonBtn,
+            SyTable,
+            check,
+            selec
         },
         data() {
             return {
+                titleData : [
+                    {company: '公司名称',className: 'companyName'},
+                    {type: '公司类型'},
+                    {target: '收购标的'},
+                    {legalPreson: '法人代表'},
+                    {capital: '注册资本<br><small>(万元)</small>',sortValue: 'capital',sortType: ''},
+                    {detail: '详情'},
+                ],
+                bodyData : [{
+                        type: "非挂牌",
+                        target: "2020-01-10",
+                        company: "北京视野金融信息服务有限公司",
+                        legalPreson: '张三',
+                        capital: "1500",
+                        detail: "详情",
+                    },
+                    {
+                        type: "非挂牌",
+                        target: "2020-01-10",
+                        company: "字节跳动",
+                        legalPreson: '张三',
+                        capital: "2500",
+                        detail: "详情",
+                    }
+                ],
                 selectIndex: [2],
                 icon: '',
                 valueData: 'jack',
@@ -111,38 +139,27 @@
                 iptError : false,
                 isRelated : false,
                 relateData : [],
-                titleData : [
-                    [
-                        {html: '公司名称', className : 'companyName'},
-                        {html: '公司类型'},
-                        {html: '收购标的'},
-                        {html: '法人代表'},
-                        {html: '注册资本<br><small>(万元)</small>', sort : true, sortValue : 'capital', sortType : ''},
-                        {html: '详情'},
-                    ]
-                ],
-                bodyData : [
-                    [{html: '北京视野金融信息服务有限公司'},{html: '非挂牌'},{html: '--'},{html: '张三'},{html: '1500'},{html: '--'}],
-                    [{html: '字节跳动'},{html: '非挂牌'},{html: '10'},{html: '李四'},{html: '1200'},{html: '--'}]
-                ],
-                scrollX : false
+                scrollX : false,
+                trClass: [{
+                    index: 2,
+                    className: 'test'
+                }]
             }
         },
         methods: {
             getSortData (sortData){
                 let that = this;
                 let titleData = that.titleData || [];
-                titleData = titleData[0];
                 if(sortData.sortType){
                     for(let i = 0, l = titleData.length; i < l; i++){
-                        if(titleData[i].sort && titleData[i].sortValue === sortData.sortValue){
+                        if(titleData[i].sortValue === sortData.sortValue){
                             titleData[i].sortType = sortData.sortType;
                         }
                     }
                 }
             },
             confirm() {
-                console.log(this.startDate,'===')
+                console.log(this.startDate,'==11==')
             },
             input (value){
                 this.iptValue = value
@@ -165,17 +182,21 @@
                     ]
                 }else{
                     this.isRelated = false;
+                    console.log('==22==')
                 }
             },
             chooseCompany (data){
-                this.iptValue = data.name || ''
+                this.iptValue = data.name || '';
                 this.isRelated = false;
             },
             iptKeyup(value) {
 
             },
             iptClick(value) {
-                console.log(value,'=====')
+                console.log(value,'==33==')
+            },
+            tdClick(value) {
+                console.log(value,'==44==')
             }
         }
     }
