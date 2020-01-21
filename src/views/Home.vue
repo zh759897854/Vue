@@ -48,6 +48,11 @@
             </sy-table>
         </div>
         <br/><br/><br/><br/>
+
+        <div>
+            <button>获取行政区域划分</button>
+        </div>
+
     </div>
 </template>
 
