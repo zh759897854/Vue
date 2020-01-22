@@ -78,6 +78,10 @@
         },
         data() {
             return {
+                trClass: [{
+                    index: 5,
+                    className: 'detail'
+                }],
                 titleData : [
                     {company: '公司名称',className: 'companyName'},
                     {type: '公司类型'},
@@ -95,10 +99,10 @@
                         detail: "详情",
                     },
                     {
-                        type: "非挂牌",
+                        type: "A股上市",
                         target: "2020-01-10",
                         company: "字节跳动",
-                        legalPreson: '张三',
+                        legalPreson: '李四',
                         capital: "2500",
                         detail: "详情",
                     }
@@ -145,23 +149,24 @@
                 isRelated : false,
                 relateData : [],
                 scrollX : false,
-                trClass: [{
-                    index: 2,
-                    className: 'test'
-                }]
             }
         },
         methods: {
+            // 表格排序
             getSortData (sortData){
                 let that = this;
                 let titleData = that.titleData || [];
                 if(sortData.sortType){
                     for(let i = 0, l = titleData.length; i < l; i++){
-                        if(titleData[i].sortValue === sortData.sortValue){
+                        if(titleData[i].hasOwnProperty(sortData.sortValue)){
                             titleData[i].sortType = sortData.sortType;
                         }
                     }
                 }
+            },
+            // 表格点击事件
+            tdClick(value) {
+                console.log(value,'点击事件')
             },
             confirm() {
                 console.log(this.startDate,'==11==')
@@ -200,9 +205,6 @@
             iptClick(value) {
                 console.log(value,'==33==')
             },
-            tdClick(value) {
-                console.log(value,'==44==')
-            }
         }
     }
 </script>
