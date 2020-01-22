@@ -1,7 +1,7 @@
 <!--table组件-->
 <template>
     <div class="sy-table" ref="tableWrapper">
-        <table v-if="scrollX && titleTempData.length > 0" :class="scrollX ? 'scroll-table' : ''">
+        <table v-if="scrollX && titleTempData.length > 0" :class="{'scroll-table' : scrollX}">
             <tbody>
                 <tr>
                     <td class="table-left">
@@ -67,7 +67,7 @@
                 </tr>
             </tbody>
         </table>
-        <table v-if="!scrollX && titleTempData.length > 0" :class="scrollX ? '' : 'unscroll-table'">
+        <table v-if="!scrollX && titleTempData.length > 0" :class="{'unscroll-table': !scrollX}">
             <thead>
                 <tr>
                     <th v-for="(th,index) in titleData" :key="index">
