@@ -9,13 +9,13 @@
                             <table ref="leftTable">
                                 <thead>
                                     <tr>
-                                        <th :class="th.className" v-for="(th,index) in titleData" :key="index" v-show="index===0">
+                                        <th :class="th.className" v-for="(th,index) in titleData" :key="index" v-show="index === 0">
                                             <template v-if="th.sortValue">
                                                 <div class="sort-cell" @click="thSortEvent(th)">
                                                     <span v-html="th[titleTempData[index]]"></span>
-                                                    <i v-if="th[titleTempData[index]].sortType === ''" class="icon icon-sort"></i>
-                                                    <i v-if="th[titleTempData[index]].sortType === 'asc'" class="icon icon-sort icon-asc"></i>
-                                                    <i v-if="th[titleTempData[index]].sortType === 'desc'" class="icon icon-sort icon-desc"></i>
+                                                    <i v-if="th.sortType === ''" class="icon icon-sort"></i>
+                                                    <i v-if="th.sortType === 'asc'" class="icon icon-sort icon-asc"></i>
+                                                    <i v-if="th.sortType === 'desc'" class="icon icon-sort icon-desc"></i>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -25,8 +25,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',$event)" @mouseout="mouseEvent('mouseout',$event)">
-                                        <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)" v-show="index === 0">
+                                    <tr :class="{'hover': index===hoverIndex}" v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',index)" @mouseout="mouseEvent('mouseout')">
+                                        <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)" v-show="tdIndex === 0">
                                             <div v-html="tr[titleValue]" @click="tdClickEvent(tdIndex,tr)"></div>
                                         </td>
                                     </tr>
@@ -34,36 +34,36 @@
                             </table>
                         </div>
                     </td>
-                    <!--<td class="table-right">-->
-                        <!--<div class="table-rigth-wrapepr" ref="tableRightWrapper">-->
-                            <!--<table ref="rightTable">-->
-                                <!--<thead>-->
-                                    <!--<tr v-for="(tr,index) in titleData" :key="index">-->
-                                        <!--<th v-for="(th,innerIndex) in tr.slice(1,tr.length)" :key="innerIndex" :class="th.className">-->
-                                            <!--<template v-if="th.sort">-->
-                                                <!--<div class="sort-cell" @click="thSortEvent(th)">-->
-                                                    <!--<span v-html="th.html"></span>-->
-                                                    <!--<i v-if="th.sortType === ''" class="icon icon-sort"></i>-->
-                                                    <!--<i v-if="th.sortType === 'asc'" class="icon icon-sort icon-asc"></i>-->
-                                                    <!--<i v-if="th.sortType === 'desc'" class="icon icon-sort icon-desc"></i>-->
-                                                <!--</div>-->
-                                            <!--</template>-->
-                                            <!--<template v-else>-->
-                                                <!--<div v-html="th.html"></div>-->
-                                            <!--</template>-->
-                                        <!--</th>-->
-                                    <!--</tr>-->
-                                <!--</thead>-->
-                                <!--<tbody>-->
-                                    <!--<tr v-for="(tr,index) in bodyData" :key="index" :class="getTrClassName(index)">-->
-                                        <!--<td v-for="(td,innerIndex) in tr.slice(1,tr.length)" :key="innerIndex" :class="td.className">-->
-                                            <!--<div v-html="td.html" @click="tdClickEvent(innerIndex + 1,tr)"></div>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                    <!--</td>-->
+                    <td class="table-right">
+                        <div class="table-rigth-wrapepr" ref="tableRightWrapper">
+                            <table ref="rightTable">
+                                <thead>
+                                <tr>
+                                    <th :class="th.className" v-for="(th,index) in titleData" :key="index" v-show="index > 0">
+                                        <template v-if="th.sortValue">
+                                            <div class="sort-cell" @click="thSortEvent(th)">
+                                                <span v-html="th[titleTempData[index]]"></span>
+                                                <i v-if="th.sortType === ''" class="icon icon-sort"></i>
+                                                <i v-if="th.sortType === 'asc'" class="icon icon-sort icon-asc"></i>
+                                                <i v-if="th.sortType === 'desc'" class="icon icon-sort icon-desc"></i>
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <div v-html="th[titleTempData[index]]"></div>
+                                        </template>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr :class="{'hover': index===hoverIndex}" v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',index)" @mouseout="mouseEvent('mouseout')">
+                                    <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)" v-show="tdIndex > 0">
+                                        <div v-html="tr[titleValue]" @click="tdClickEvent(tdIndex,tr)"></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -86,7 +86,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',$event)" @mouseout="mouseEvent('mouseout',$event)">
+                <tr :class="{'hover': index===hoverIndex}" v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',index)" @mouseout="mouseEvent('mouseout')">
                     <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)">
                         <div v-html="tr[titleValue]" @click="tdClickEvent(tdIndex,tr)"></div>
                     </td>
@@ -102,7 +102,8 @@
     export default {
         data (){
             return{
-                scrollObject : null
+                scrollObject : null,
+                hoverIndex: null
             }
         },
         props : {
@@ -162,7 +163,7 @@
             window.addEventListener('resize',function(){
                 that.updateScrollWidth();
                 that.updateTrHeight();
-            },false)
+            },false);
             if(that.scrollObject){
                 that.scrollObject.refresh();
             }
@@ -241,11 +242,11 @@
             /**
              * 鼠标划入划出
              * */
-            mouseEvent(type,$event){
+            mouseEvent(type,index){
                 if(type === 'mouseover'){
-                    $event.currentTarget.className = 'hover';
+                    this.hoverIndex = index;
                 }else if(type === 'mouseout'){
-                    $event.currentTarget.className = '';
+                    this.hoverIndex = null;
                 }
             },
         }
@@ -352,6 +353,15 @@
                     border-right: 1px solid @border-color;
                     border-bottom: 1px solid @border-color;
                 }
+            }
+            tr.hover{
+                background: #f9fefe;
+                border-right: 1px solid @border-color;
+                box-shadow: 0 3px 12px #2a5989;
+                td{
+                    border-right: none;
+                }
+                cursor: pointer;
             }
         }
 

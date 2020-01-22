@@ -39,7 +39,7 @@
         <br/><br/><br/><br/>
 
         <div>
-            <sy-table :scrollX="true"
+            <sy-table :scrollX="false"
                       :titleData="titleData"
                       :bodyData="bodyData"
                       :trClass="trClass"
