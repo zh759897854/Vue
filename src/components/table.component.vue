@@ -55,11 +55,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr :class="{'hover': index===hoverIndex}" v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',index)" @mouseout="mouseEvent('mouseout')">
-                                    <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)" v-show="tdIndex > 0">
-                                        <div v-html="tr[titleValue]" @click="tdClickEvent(tdIndex,tr)"></div>
-                                    </td>
-                                </tr>
+                                    <tr :class="{'hover': index===hoverIndex}" v-for="(tr,index) in bodyData" :key="index" @mouseover="mouseEvent('mouseover',index)" @mouseout="mouseEvent('mouseout')">
+                                        <td v-for="(titleValue,tdIndex) in titleTempData" :key="tdIndex" :class="getTrClassName(tdIndex)" v-show="tdIndex > 0">
+                                            <div v-html="tr[titleValue]" @click="tdClickEvent(tdIndex,tr)"></div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
