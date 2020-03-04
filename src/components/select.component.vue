@@ -21,10 +21,10 @@
                 height: 32px;
                 font-size: 14px;
                 line-height: 32px;
-                color: #333;
+                color: @color-333;
                 word-break: keep-all;
                 overflow: hidden;
-                border: 1px solid #E5E5E5;
+                border: 1px solid @link-border-color;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
                 border-radius: 2px;
@@ -40,7 +40,7 @@
             margin-top: -10px;
             width: 28px;
             height: 20px;
-            background-color: #fff;
+            background-color: @color-white;
             cursor: default;
         }
         .triangle-down{
@@ -54,12 +54,12 @@
                 border-right: 7px solid transparent;
             }
             .triangle-down-black {
-                border-top: 7px solid #fff;
+                border-top: 7px solid @color-white;
                 top: 9px;
                 z-index: 2;
             }
             .triangle-down-white {
-                border-top: 7px solid #999;
+                border-top: 7px solid @color-999;
                 top: 11px;
                 z-index: 1;
             }
@@ -75,12 +75,12 @@
                 border-right: 7px solid transparent;
             }
             .triangle-down-black {
-                border-bottom: 7px solid #fff;
+                border-bottom: 7px solid @color-white;
                 top: 11px;
                 z-index: 2;
             }
             .triangle-down-white {
-                border-bottom: 7px solid #999;
+                border-bottom: 7px solid @color-999;
                 top: 9px;
                 z-index: 1;
             }
@@ -95,10 +95,10 @@
             width: 100%;
             max-height: 200px;
             overflow: hidden;
-            border: 1px solid #E5E5E5;
+            border: 1px solid @link-border-color;
             border-radius: 2px;
-            color: #999;
-            background: #fff;
+            color: @color-999;
+            background: @color-white;
             .option-wrapper-scroll {
                 width: 110%;
                 max-height: 200px;
@@ -115,11 +115,11 @@
                 cursor: default;
             }
             .option-item:hover{
-                background-color: #F1F3F4;
+                background-color: @select-options;
             }
             .acitve {
-                background-color: #F1F3F4;
-                color: #333;
+                background-color: @select-options;
+                color: @color-333;
             }
         }
         /* 多选 选项样式*/
@@ -132,10 +132,10 @@
             width: 100%;
             max-height: 200px;
             overflow: hidden;
-            border: 1px solid #E5E5E5;
+            border: 1px solid @link-border-color;
             border-radius: 2px;
-            color: #999;
-            background: #fff;
+            color: @color-999;
+            background: @color-white;
             .option-wrapper-scroll {
                 width: 110%;
                 max-height: 200px;
@@ -157,24 +157,24 @@
                     width: 10px;
                     height: 10px;
                     line-height: 10px;
-                    border: 1px solid #E5E5E5;
-                    color: #fff;
+                    border: 1px solid @link-border-color;
+                    color: @color-white;
                     >span {
                         display: inline-block;
                         transform: scale(0.6);
                     }
                 }
                 .multiple-acitve {
-                    background: #14B8D4;
-                    border-color: #14B8D4 !important;
+                    background: @color-primary;
+                    border-color: @color-primary !important;
                     background-image: url("./image/select-icon.png");
-                    background-repeat: no-repeat;
+                    background-repeat: @background-repeat;
                     background-size: 80%;
                     background-position: 1px 2px;
                 }
             }
             .option-item-acitve {
-                color: #333;
+                color: @color-333;
             }
         }
     }

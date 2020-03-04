@@ -254,9 +254,6 @@
 </script>
 
 <style lang="less">
-
-    @border-color : #e5e5e5;
-
     .sy-table{
         overflow: hidden;
         table{
@@ -266,8 +263,8 @@
         }
         tr.hover{
             background: #f9fefe;
-            border-right: 1px solid @border-color;
-            box-shadow: 0 3px 12px #2a5989;
+            border-right: 1px solid @table-border-color;
+            box-shadow: 0 3px 12px @table-hover-bg;
             td{
                 border-right: none;
             }
@@ -330,11 +327,11 @@
                     }
                 }
                 tbody{
-                    border-left: 1px solid @border-color;
-                    border-right: 1px solid @border-color;
+                    border-left: 1px solid @table-border-color;
+                    border-right: 1px solid @table-border-color;
                 }
                 td{
-                    border-bottom: 1px solid @border-color;
+                    border-bottom: 1px solid @table-border-color;
                 }
             }
             .table-right{
@@ -347,17 +344,17 @@
                     }
                 }
                 tbody{
-                    border-right: 2px solid @border-color;
+                    border-right: 2px solid @table-border-color;
                 }
                 td{
-                    border-right: 1px solid @border-color;
-                    border-bottom: 1px solid @border-color;
+                    border-right: 1px solid @table-border-color;
+                    border-bottom: 1px solid @table-border-color;
                 }
             }
             tr.hover{
                 background: #f9fefe;
-                border-right: 1px solid @border-color;
-                box-shadow: 0 3px 12px #2a5989;
+                border-right: 1px solid @table-border-color;
+                box-shadow: 0 3px 12px @table-hover-bg;
                 td{
                     border-right: none;
                 }
@@ -370,11 +367,11 @@
                 border-right: 1px solid #def3fc;
             }
             tbody{
-                border-left: 1px solid @border-color;
+                border-left: 1px solid @table-border-color;
             }
             td{
-                border-bottom: 1px solid @border-color;
-                border-right: 1px solid @border-color;
+                border-bottom: 1px solid @table-border-color;
+                border-right: 1px solid @table-border-color;
             }
         }
     }

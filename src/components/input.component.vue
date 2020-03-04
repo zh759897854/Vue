@@ -170,22 +170,22 @@
             display: inline-block;
             width: auto;
             height: 30px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid @link-border-color;
             border-radius: 2px;
 
             &.readonly{
-                background: #f5f5f5;
+                background: @input-disbale;
                 input{
-                    background: #f5f5f5;
+                    background: @input-disbale;
                 }
             }
 
             &.on-focus{
-                border: 1px solid #14b8d4;
+                border: 1px solid @color-primary;
             }
 
             &.error{
-                border: 1px solid #ec1420;
+                border: 1px solid @input-error-border;
             }
 
             input {
@@ -194,27 +194,27 @@
                 left: 10px;
                 width: 90%;
                 height: 28px;
-                background: #fff;
+                background: @color-white;
                 border: 0;
-                color: #333;
+                color: @color-333;
                 font-size: 14px;
                 outline: none;
             }
 
             input::-webkit-input-placeholder{
-                color: #999;
+                color: @color-999;
             }
 
             input:-moz-placeholder{
-                color: #999;
+                color: @color-999;
             }
 
             input::-moz-placeholder{
-                color: #999;
+                color: @color-999;
             }
 
             input:-ms-input-placeholder{
-                color: #999;
+                color: @color-999;
             }
 
             i{
@@ -238,7 +238,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                color: #ec1420;
+                color: @input-error-border;
             }
         }
 
@@ -248,8 +248,8 @@
             top: 32px;
             width: 200px;
             max-height: 200px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
+            background: @color-white;
+            border: 1px solid @link-border-color;
             overflow-y: hidden;
 
             ul{
@@ -264,10 +264,10 @@
                 font-size: 14px;
                 li{
                     padding: 6px 10px;
-                    color: #999;
+                    color: @color-999;
                     &:hover{
-                        color: #333;
-                        background: #f1f3f4;
+                        color: @color-999;
+                        background: @link-bg-color;
                         cursor: pointer;
                     }
                     span{

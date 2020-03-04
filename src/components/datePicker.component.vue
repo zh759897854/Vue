@@ -6,14 +6,14 @@
         margin-right: 15px;
         overflow-y: visible;
         font-size: 14px;
-        color: #666;
-        background: #fff;
+        color: @color-666;
+        background: @color-white;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
         .has-day-model,.only-year-model,.has-month-model {
-            background: #fff;
+            background: @color-white;
         }
         ::-ms-clear, ::-ms-reveal{
             display: none;
@@ -22,19 +22,19 @@
         .clear-button {
             width: 20px;
             height: 20px;
-            border: 1px solid #fff;
+            border: 1px solid @color-white;
             border-radius: 20px;
             outline: none;
-            background: #fff;
+            background: @color-white;
         }
         .date-input {
             width: 98px;
             height: 30px;
             line-height: 32px;
             padding: 0 10px;
-            color: #333;
+            color: @color-333;
             outline: none;
-            border: 1px solid #E5E5E5;
+            border: 1px solid @link-border-color;
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
             border-radius: 4px;
@@ -47,8 +47,8 @@
             top: 33px;
             z-index: 1000;
             width: 360px;
-            background: #fff;
-            border: 1px solid #E5E5E5;
+            background: @color-white;
+            border: 1px solid @link-border-color;
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
             border-radius: 4px;
@@ -56,7 +56,7 @@
             .select-contain {
                 display: block;
                 padding: 5px 20px;
-                color: #333;
+                color: @color-333;
                 >div {
                     display: inline-block;
                     width: 100%/3;
@@ -73,8 +73,8 @@
                         position: relative;
                         top: 12px;
                         left: 5px;
-                        border: 6px solid #fff;
-                        border-top-color: #000;
+                        border: 6px solid @color-white;
+                        border-top-color: @color-000;
                     }
                 }
                 div:nth-child(3) {
@@ -84,19 +84,19 @@
                     display: inline-block;
                     width: 20px;
                     height: 20px;
-                    border: 1px solid #E5E5E5;
+                    border: 1px solid @link-border-color;
                     border-radius: 100%;
                     cursor: pointer;
                 }
                 .prve-month {
                     background-image: url('./image/left-arrow.png');
                     background-position: center;
-                    background-repeat: no-repeat;
+                    background-repeat: @background-repeat;
                 }
                 .next-month {
                     background-image: url('./image/right-arrow.png');
                     background-position: center;
-                    background-repeat: no-repeat;
+                    background-repeat: @background-repeat;
                 }
                 .mostYear {
                     span {
@@ -126,21 +126,21 @@
                     }
                 }
                 .disable-color {
-                    color: #999;
+                    color: @color-999;
                 }
                 .day-active {
-                    background: #14B8D4;
-                    color: #fff;
+                    background: @color-primary;
+                    color: @color-white;
                 }
             }
 
             /*特性样式*/
             .week-contain {
-                color: #333;
+                color: @color-333;
             }
             /*日期*/
             .day-contain {
-                border-top: 1px solid #E5E5E5;
+                border-top: 1px solid @input-text-color;
                 padding: 10px 10px 20px 10px;
                 >span {
                     margin-top: 5px;
@@ -149,12 +149,12 @@
                     text-align: center;
                 }
                 >span:hover {
-                    background: #14B8D4;
-                    color: #fff;
+                    background: @color-primary;
+                    color: @color-white;
                 }
                 .disable-click {
-                    background: #fff;
-                    color: #999;
+                    background: @color-white;
+                    color: @color-999;
                 }
             }
             /*月份 年份*/
@@ -166,29 +166,29 @@
                     margin-top: 5px;
                 }
                 >span:hover {
-                    background: #14B8D4;
-                    color: #fff;
+                    background: @color-primary;
+                    color: @color-white;
                 }
             }
             .month-active,.year-active {
-                background: #14B8D4;
-                color: #fff;
+                background: @color-primary;
+                color: @color-white;
             }
         }
         /*按钮*/
         .btn-panel {
-            border-top: 1px solid #E5E5E5;
+            border-top: 1px solid @input-text-color;
             padding: 10px 10px;
             text-align: right;
             .btn {
                 display: inline-block;
                 padding: 5px 10px;
                 margin-right: 15px;
-                background-color: #14b8d4;
+                background-color: @color-primary;
                 border-color: #12a4bd;
                 border-radius: 4px;
                 cursor: pointer;
-                color: #fff;
+                color: @color-white;
             }
         }
     }

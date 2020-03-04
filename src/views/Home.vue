@@ -55,7 +55,11 @@
 
     </div>
 </template>
-
+<style lang="less">
+    .home {
+        padding: 10px;
+    }
+</style>
 <script>
 
     import DatePicker from '@/components/datePicker.component'

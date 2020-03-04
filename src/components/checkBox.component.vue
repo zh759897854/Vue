@@ -3,7 +3,7 @@
         display: inline-block;
         font-size: 14px;
         line-height: 14px;
-        color: #333;
+        color: @color-333;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -26,7 +26,7 @@
                 display: inline-block;
                 width: 14px;
                 height: 14px;
-                border: 1px solid #E5E5E5;
+                border: 1px solid @link-border-color;
                 font-size: 12px;
                 > span {
                     display: inline-block;
@@ -61,11 +61,11 @@
         /*选中样式*/
         .checked {
             .checkbox-icon {
-                border-color: #14B8D4 !important;
+                border-color: @color-primary !important;
                 > span {
-                    background: #14B8D4;
+                    background: @color-primary;
                     background-image: url("./image/select-icon.png");
-                    background-repeat: no-repeat;
+                    background-repeat: @background-repeat;
                     background-position: 1px 2px;
                 }
             }

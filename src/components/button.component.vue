@@ -9,33 +9,33 @@
                display: inline-block;
                min-width: 52px;
                height: 30px;
-               font-size: 14px;
-               background: #fff;
-               color: #14b8d4;
+               font-size: @font-size-base;
+               background: @color-white;
+               color: @color-primary;
                padding: 0;
                margin: 0;
                text-align: center;
-               border: 1px solid #14b8d4;
-               border-radius: 2px;
+               border: 1px solid @color-primary;
+               border-radius: @btn-border-radius;
                outline: none;
                cursor: pointer;
                -webkit-background-size: 20px 20px;
                background-size: 20px 20px;
-               background-repeat: no-repeat;
+               background-repeat: @background-repeat;
                background-position: 5px 5px;
            }
            .common-btn:active {
-               color: #01758a;
-               border-color: #01758a;
+               color: @btn-active-bg;
+               border-color: @btn-active-bg;
            }
            .bgc-btn {
-               background: #14b8d4;
-               color: #fff;
+               background: @color-primary;
+               color: @color-white;
            }
            .bgc-btn:active {
-               color: #fff;
-               background: #01758a;
-               border-color: #01758a;
+               color: @color-white;
+               background: @btn-active-bg;
+               border-color: @btn-active-bg;
            }
            /*带icon的按钮*/
            .btn-icon {
@@ -46,12 +46,12 @@
                color: #fff;
                -webkit-background-size: 20px 20px;
                background-size: 20px 20px;
-               background-repeat: no-repeat;
+               background-repeat: @background-repeat;
                background-position: 5px 5px;
            }
            .bgc-btn-color:active {
-               color: #fff;
-               background-color: #01758a !important;
+               color: @color-white;
+               background-color: @btn-active-bg !important;
            }
        }
    }
