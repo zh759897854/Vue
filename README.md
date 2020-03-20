@@ -40,3 +40,5 @@ module.exports = {
     // pathRewrite: {'^/old/api' : '/new/api'} // 重写路径 pathRewrite + 请求地址
     // pathRewrite: {'^/remove/api' : ''} // 删除路径 target + '' + 请求地址
     // pathRewrite: {'^/' : '/basepath/'} // 添加基础路径 target + pathRewrite + 请求地址 ```
+
+关于Vue require(data) 用于图片地址的时候，data不能是变量  这样解析的家会把头部下的所有文件作为模块引入，从而报错（我的vue3脚手架根本不报错？？？找了半天原因）
