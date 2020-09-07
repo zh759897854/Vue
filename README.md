@@ -22,7 +22,7 @@ module.exports = {
 ```
 
 ###  关于axios跨域  vue配置proxy 网上的都是找一篇一通往上怼  根本没重点 解析也不明确
-### 重点说明 pathRewrite 并不是全部重写 具体的是重写了还是替换了  分情况见下面注释1
+### 重点说明 pathRewrite 并不是全部重写 具体的是重写了还是替换了  分情况见下面注释
 ```    // 配置跨域
     devServer: {
         proxy: {
@@ -36,7 +36,7 @@ module.exports = {
             }
         }
     },
-    【注释1】
+    【注释】
     // pathRewrite: {'^/old/api' : '/new/api'} // 重写路径 pathRewrite + 请求地址
     // pathRewrite: {'^/remove/api' : ''} // 删除路径 target + '' + 请求地址
     // pathRewrite: {'^/' : '/basepath/'} // 添加基础路径 target + pathRewrite + 请求地址 ```
